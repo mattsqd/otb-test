@@ -6,7 +6,8 @@ machine:
 jobs:
   build:
     docker:
-      - image: php:7.1
+      # specify the version you desire here
+      - image: circleci/php:7.1.5-browsers
       - image: selenium/standalone-chrome:3
     working_directory: ~/otb-test
     steps:
