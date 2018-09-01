@@ -38,7 +38,7 @@ jobs:
 
       - run: mkdir ./behat_screenshots
       # add an empty file so that the directory isn't empty (else copy may fail)
-      - run: touch var/behat_screenshots/empty.txt
+      - run: touch ./behat_screenshots/empty.txt
 
       - run:
           name: Run Behat tests
