@@ -1,13 +1,9 @@
 # .circleci/config.yml
 version: 2
-machine:
-  php:
-    version: 7.1
 jobs:
   build:
     docker:
-      # specify the version you desire here
-      - image: circleci/php:7.1.5-browsers
+      - image: php:7.1
       - image: selenium/standalone-chrome:3
     working_directory: ~/otb-test
     steps:
@@ -20,6 +16,13 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      - run:
+          name: Install Composer
+          command: |
+            php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+            php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer invalid'; unlink('composer-setup.php'); } echo PHP_EOL;"
+            php composer-setup.php
+            php -r "unlink('composer-setup.php');"
       # Update Composer and install dependencies
       - run: composer self-update
       - run: composer install -n --prefer-dist
