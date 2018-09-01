@@ -1,0 +1,12 @@
+default:
+  suites:
+    default:
+      contexts:
+      - FeatureContext: ~
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'https://www.makeyourbonusplay.com/'
+      goutte: ~
+      selenium2: ~
+      browser_name: chrome
+    #Behat\Symfony2Extension: ~

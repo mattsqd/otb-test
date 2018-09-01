@@ -1,0 +1,4 @@
+/vendor
+/behat_screenshots
+.idea
+/bin
