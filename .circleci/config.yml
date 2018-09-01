@@ -3,38 +3,38 @@ version: 2
 jobs:
   build:
     docker:
-    - image: php:7
-    - image: selenium/standalone-chrome:3
+      - image: php:7
+      - image: selenium/standalone-chrome:3
     working_directory: ~/otb-test
     steps:
-    - checkout
+      - checkout
 
-    # Download and cache dependencies
-    - restore_cache:
-        keys:
-        - v1-dependencies-{{ checksum "composer.json" }}
-        # fallback to using the latest cache if no exact match is found
-        - v1-dependencies-
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
 
-    # Update Composer and install dependencies
-    - run: composer self-update
-    - run: composer install -n --prefer-dist
+      # Update Composer and install dependencies
+      - run: composer self-update
+      - run: composer install -n --prefer-dist
 
-    - save_cache:
-      paths:
-      - ./vendor
-      key: v1-dependencies-{{ checksum "composer.json" }}
+      - save_cache:
+          paths:
+            - ./vendor
+          key: v1-dependencies-{{ checksum "composer.json" }}
 
-    - run: mkdir var/behat_screenshots/
-    # add an empty file so that the directory isn't empty (else copy may fail)
-    - run: touch var/behat_screenshots/empty.txt
+      - run: mkdir var/behat_screenshots/
+      # add an empty file so that the directory isn't empty (else copy may fail)
+      - run: touch var/behat_screenshots/empty.txt
 
-    - run:
-      name: Run Behat tests
-      command: php bin/behat
-      # Export environment variable for this single command shell
-      environment:
-        BEHAT_SCREENSHOTS: '1'
+      - run:
+          name: Run Behat tests
+          command: php bin/behat
+          # Export environment variable for this single command shell
+          environment:
+            BEHAT_SCREENSHOTS: '1'
 
-    - store_artifacts:
-      path: var/behat_screenshots/
+      - store_artifacts:
+          path: var/behat_screenshots/
