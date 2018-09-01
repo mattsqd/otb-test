@@ -11,6 +11,7 @@ jobs:
           name: Install system packages
           command: apt-get update && apt-get -y install git
       - checkout
+
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -35,7 +36,7 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
 
-      - run: mkdir var/behat_screenshots/
+      - run: mkdir ./behat_screenshots
       # add an empty file so that the directory isn't empty (else copy may fail)
       - run: touch var/behat_screenshots/empty.txt
 
@@ -47,4 +48,4 @@ jobs:
             BEHAT_SCREENSHOTS: '1'
 
       - store_artifacts:
-          path: var/behat_screenshots/
+          path: ./behat_screenshots/
