@@ -9,9 +9,21 @@ jobs:
     steps:
       - checkout
 
+      # Download and cache dependencies
+      - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "composer.json" }}
+        # fallback to using the latest cache if no exact match is found
+        - v1-dependencies-
+
       # Update Composer and install dependencies
       - run: composer self-update
-      - run: composer install --prefer-dist
+      - run: composer install -n --prefer-dist
+
+      - save_cache:
+        paths:
+        - ./vendor
+        key: v1-dependencies-{{ checksum "composer.json" }}
 
       - run: mkdir var/behat_screenshots/
       # add an empty file so that the directory isn't empty (else copy may fail)
