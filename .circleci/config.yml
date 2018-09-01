@@ -7,8 +7,10 @@ jobs:
       - image: selenium/standalone-chrome:3
     working_directory: ~/otb-test
     steps:
+      - run:
+          name: Install system packages
+          command: apt-get update && apt-get -y install git
       - checkout
-
       # Download and cache dependencies
       - restore_cache:
           keys:
