@@ -12,9 +12,9 @@ jobs:
       # Download and cache dependencies
       - restore_cache:
         keys:
-        - v1-dependencies-{{ checksum "composer.json" }}
-        # fallback to using the latest cache if no exact match is found
-        - v1-dependencies-
+          - v1-dependencies-{{ checksum "composer.json" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
 
       # Update Composer and install dependencies
       - run: composer self-update
@@ -22,7 +22,7 @@ jobs:
 
       - save_cache:
         paths:
-        - ./vendor
+          - ./vendor
         key: v1-dependencies-{{ checksum "composer.json" }}
 
       - run: mkdir var/behat_screenshots/
