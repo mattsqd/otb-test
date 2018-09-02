@@ -11,6 +11,10 @@ use Behat\Behat\Hook\Scope\AfterStepScope;
 class FeatureContext extends MinkContext implements SnippetAcceptingContext {
 
   /**
+   * Check if the current step failed and take a screen shot.
+   *
+   * @param \Behat\Behat\Hook\Scope\AfterStepScope $event
+   *
    * @AfterStep
    */
   public function printLastResponseOnError(AfterStepScope $event)
@@ -22,7 +26,9 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
   }
 
   /**
-   * @AfterStep
+   * Save a screen shot of the current step.
+   *
+   * @param \Behat\Behat\Hook\Scope\AfterStepScope $event
    */
   public function saveDebugScreenshot(AfterStepScope $event)
   {
