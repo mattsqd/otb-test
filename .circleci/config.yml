@@ -4,7 +4,7 @@ jobs:
   build:
     docker:
       - image: php:7.1
-      - image: selenium/standalone-chrome:3
+      - image: selenium/standalone-chrome:3.14.0
     working_directory: ~/otb-test
     steps:
       - run:
