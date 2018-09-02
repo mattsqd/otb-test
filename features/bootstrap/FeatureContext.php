@@ -19,6 +19,8 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
    */
   public function printLastResponseOnError(AfterStepScope $event)
   {
+    var_dump($event->getTestResult()->getResultCode());
+    var_dump(!$event->getTestResult()->isPassed());
     if (!$event->getTestResult()->isPassed()) {
       $this->saveDebugScreenshot($event);
     }
