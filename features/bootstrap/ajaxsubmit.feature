@@ -24,12 +24,3 @@ Feature: AJAX Submission
     When I press "Sign In"
     And I wait for Ajax to finish
     Then I should see "Sorry, we could not authenticate your credentials. See FAQs for more information."
-
-  @javascript
-  Scenario: A club wyndham member can sign in
-    Given I am on the homepage
-    And I fill in "Email" with "kpstancil@gmail.com"
-    And I fill in "Contract Number" with "281822452"
-    When I press "Sign In"
-    And I wait for Ajax to finish
-    Then I should see "FAIL"
