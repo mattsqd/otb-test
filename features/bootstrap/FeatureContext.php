@@ -20,7 +20,6 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
   public function printLastResponseOnError(AfterStepScope $event)
   {
     if (!$event->getTestResult()->isPassed()) {
-      var_dump('took screenshot');
       $this->saveDebugScreenshot($event);
     }
   }
@@ -32,7 +31,6 @@ class FeatureContext extends MinkContext implements SnippetAcceptingContext {
    */
   public function saveDebugScreenshot(AfterStepScope $event)
   {
-    var_dump('ok');
     $driver = $this->getSession()->getDriver();
 
     if (!$driver instanceof Selenium2Driver) {
