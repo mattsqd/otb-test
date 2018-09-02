@@ -9,4 +9,3 @@ default:
       goutte: ~
       selenium2: ~
       browser_name: chrome
-    #Behat\Symfony2Extension: ~
