@@ -36,10 +36,6 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
 
-      - run: mkdir ./behat_screenshots
-      # add an empty file so that the directory isn't empty (else copy may fail)
-      - run: touch ./behat_screenshots/empty.txt
-
       - run:
           name: Run Behat tests
           command: php bin/behat --profile=circleci
