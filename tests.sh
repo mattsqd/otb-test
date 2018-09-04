@@ -16,10 +16,10 @@ sleep 2
 # Run tests inside the Php container.
 docker-compose -f docker-compose.yml run --rm php composer self-update
 docker-compose -f docker-compose.yml run --rm php composer install -n --prefer-dist
-docker-compose -f docker-compose.yml run --rm php bin/behat --init
+docker-compose -f docker-compose.yml run --rm php bin/behat --init --profile=local
 
 # Run tests inside the Php container.
-docker-compose -f docker-compose.yml run --rm php bin/behat "$BEHAT_PARAMETERS"
+docker-compose -f docker-compose.yml run --rm php bin/behat  --profile=local "$BEHAT_PARAMETERS"
 
 # Stop and remove containers.
 docker-compose -f docker-compose.yml down

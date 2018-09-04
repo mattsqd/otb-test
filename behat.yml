@@ -1,4 +1,4 @@
-default:
+local:
   suites:
     default:
       contexts:
@@ -14,7 +14,7 @@ default:
 
 # Circle CI magically allows Selenium to wd_host to be found, not sure how. The
 # local version set by docker-compose needs it to be set though.
-circleci:
+default:
   suites:
     default:
       contexts:
