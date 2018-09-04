@@ -42,7 +42,7 @@ jobs:
 
       - run:
           name: Run Behat tests
-          command: php bin/behat
+          command: php bin/behat --profile=circleci
           # Export environment variable for this single command shell
           environment:
             BEHAT_SCREENSHOTS: '1'

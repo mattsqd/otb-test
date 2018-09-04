@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+  selenium:
+    image: selenium/standalone-chrome:3.14.0
+    restart: on-failure:5
+    volumes:
+    - /dev/shm:/dev/shm
+
+  php:
+    build: ./php
+    restart: on-failure:5
+    environment:
+      BEHAT_SCREENSHOTS: 1
+    volumes:
+    - ./bin:/srv/bin
+    - ./behat.yml:/srv/behat.yml
+    - ./features:/srv/features
+    - ./behat_screenshots:/srv/behat_screenshots
+    - ./composer.json:/srv/composer.json
+    - ./composer.lock:/srv/composer.lock
+    - ./vendor:/srv/vendor

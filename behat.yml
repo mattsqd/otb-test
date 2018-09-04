@@ -7,5 +7,21 @@ default:
     Behat\MinkExtension:
       base_url: 'https://www.makeyourbonusplay.com/'
       goutte: ~
+      selenium2:
+        browser: chrome
+        wd_host: http://selenium:4444/wd/hub
+      browser_name: chrome
+
+# Circle CI magically allows Selenium to wd_host to be found, not sure how. The
+# local version set by docker-compose needs it to be set though.
+circleci:
+  suites:
+    default:
+      contexts:
+      - FeatureContext: ~
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'https://www.makeyourbonusplay.com/'
+      goutte: ~
       selenium2: ~
       browser_name: chrome
